@@ -3,6 +3,7 @@ channels:
   - defaults
 
 dependencies:
- - sphinxcontrib-bibtex
- - sphinxcontrib-katex
  - python>=3.6
+ - pip:
+   - sphinxcontrib-bibtex
+   - sphinxcontrib-katex
