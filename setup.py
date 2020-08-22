@@ -20,6 +20,9 @@ setup(name='pyagree',
       install_requires=[
           'numpy',
       ],
+      extras_require={
+          'doc': ['sphinxcontrib.bibtex', 'sphinxcontrib.katex', 'numpy']
+      },
       classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Console",

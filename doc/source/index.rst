@@ -5,6 +5,8 @@ Welcome to `pyagree`'s documentation!
 inter-rater agreement measures.
 
 
+.. _installing_pyagree:
+
 Installing `pyagree`
 ====================
 
@@ -29,6 +31,8 @@ command::
 
     pip install pyagree
 
+
+.. _using_pyagree:
 
 Using `pyagree`
 ===============
@@ -78,12 +82,16 @@ the agreement matrix
    
 and print them in output.
 
+.. _agreement_measures:
+
 Agreement Measures
 ==================
 
 .. toctree::
 
    measures
+
+.. _API:
 
 API
 ===
