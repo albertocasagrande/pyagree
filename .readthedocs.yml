@@ -7,7 +7,7 @@ sphinx:
     configuration: doc/source/conf.py
 
 build:
-    image: sphinxcontrib
+    image: latest
 
 formats:
   - pdf
