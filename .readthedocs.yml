@@ -1,0 +1,22 @@
+version: 2
+
+conda:
+    environment: conda_env.yml
+
+sphinx:
+    configuration: doc/source/conf.py
+
+build:
+    image: sphinxcontrib
+
+formats:
+  - pdf
+  - html
+  - epub
+
+python:
+    install:
+      - method: pip
+        path: .
+        extra_requirements:
+         - doc

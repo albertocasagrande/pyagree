@@ -27,8 +27,8 @@ sys.path.insert(0, os.path.abspath('../..'))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.mathjax',
-#    'sphinxcontrib.katex',
+#    'sphinx.ext.mathjax',
+    'sphinxcontrib.katex',
     'sphinxcontrib.bibtex',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',

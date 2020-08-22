@@ -1,0 +1,8 @@
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+ - sphinxcontrib-bibtex
+ - sphinxcontrib-katex
+ - python>=3.6
