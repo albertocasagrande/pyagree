@@ -23,7 +23,7 @@ following commands::
     python setup.py install
 
 The second method to install `pyagree` is easier, but requires the tool `pip` 
-(see `pypi <https://pypi.org/project/pip/>`) and it may install a 
+(see `pypi <https://pypi.org/project/pip/>`_) and it may install a 
 non-bleeding edge version of the package. As administrator, issue the 
 command::
 
