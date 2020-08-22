@@ -64,6 +64,51 @@ class TestScottPi(unittest.TestCase):
         	                   res, places=7)
 
 
+class TestYuleY(unittest.TestCase):
+    def setUp(self):
+        self.Cs = [(array([[3600,2595],
+                           [  65,3740]]),
+                    0.7986777938427015),
+                   (array([[9901,  64],
+                           [   2,  33]]),
+                    0.961182593583485),
+                   (array([[9900,  86],
+                           [   1,  13]]),
+                    0.9496028357716024),
+                   (array([[21, 5],
+                           [ 3,21]]),
+                    0.6885791067119448),
+                   (array([[40, 5],
+                           [ 3, 2]]),
+                    0.3956610414960755),
+                   (array([[40, 2],
+                           [ 3, 5]]),
+                    0.7047317922538398),
+                   (array([[136,  3],
+                           [  1, 46]]),
+                    0.9571417398636336),
+                  ]
+        self.errors = [(array([[51, 4, 0, 1, 1],
+                              [ 3,78, 1, 0, 0],
+                              [ 0, 0,13, 4, 0],
+                              [ 0, 1, 1,16, 7],
+                              [ 0, 0, 0, 0, 5]]),
+                        0.8454301075268817),
+                       (array([[1, 2, 3],
+                           [4, 5, 6],
+                           [7, 8, 9]]),
+                        0.0)
+                      ]
+
+    def test_YuleY(self):
+    	for C, res in self.Cs:
+            self.assertAlmostEqual(YuleY(C), 
+        	                       res, places=7)
+    	for C, res in self.errors:
+    		with self.assertRaises(ValueError):
+    			YuleY(C)
+
+
 class TestBangdiwalaB(unittest.TestCase):
     def setUp(self):
         self.Cs = [(array([[1, 2, 3],

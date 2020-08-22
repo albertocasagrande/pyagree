@@ -1,6 +1,6 @@
 from .common import colSum_iter, rowSum_iter, item_iter
 from numpy import multiply, matrix
-
+from math import sqrt
 
 
 def BennettS(A):
