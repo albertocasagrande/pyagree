@@ -21,7 +21,7 @@ setup(name='pyagree',
           'numpy',
       ],
       extras_require={
-          'doc': ['sphinxcontrib.bibtex', 'sphinxcontrib.katex']
+          'doc': ['sphinxcontrib.bibtex', 'sphinxcontrib.katex', 'numpy']
       },
       classifiers=[
         "Development Status :: 4 - Beta",

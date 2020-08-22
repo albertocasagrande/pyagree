@@ -7,3 +7,4 @@ dependencies:
  - pip:
    - sphinxcontrib-bibtex
    - sphinxcontrib-katex
+   - numpy
