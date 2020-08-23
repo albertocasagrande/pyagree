@@ -13,7 +13,7 @@ Installing `pyagree`
 .. toctree::
 
 There are two main ways to install `pyagree`. The first one requires to clone 
-`pyagree`'s repository from github by using the following command::
+`pyagree's repository from GitHub <https://github.com/albertocasagrande/pyagree>`_ by using the following command::
 
     git clone https://github.com/albertocasagrande/pyagree.git
 
