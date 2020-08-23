@@ -1,6 +1,6 @@
 from math import log
 
-from .common import countNNRows, countNNCols
+from .common import test_agreement_matrix, countNNRows, countNNCols
 from .IT import pX, pY, pXY, entropy
 
 
@@ -18,16 +18,19 @@ def IAeps(A):
 
 
     :param A: An agreement matrix 
-    :type A:  numpy.ndarray	
+    :type A: :class:`numpy.ndarray`	
     :returns: The extension-by-continuity of Information Agreement of A
-    :rtype: float 
+    :rtype: :class:`float`
+    :raises: :class:`ValueError`
     """
     if isinstance(A,list):
     	A = matrix(A)
-    	
-    if A.shape[0]!=A.shape[1] or A.shape[0]<2:
-        raise ValueError("This method exclusively supports nxn-matrices where n>1")
-        
+
+    test_agreement_matrix(A)
+	
+    if A.shape[0]<2:
+        raise ValueError("The matrix has less than 2 rows and columns")
+
     H_Xf = entropy(refine(pX(A)))
     H_Yf = entropy(refine(pY(A)))
  

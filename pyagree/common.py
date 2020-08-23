@@ -20,7 +20,18 @@ def rowSum_iter(A):
 
         
 def item_iter(A):
-    for y in range(A.shape[0]):
-        for x in range(A.shape[1]):
-            yield A[y,x]
+    for row in A:
+    	for e in row:
+            yield e
+
+def test_agreement_matrix(A):
+    if A.shape[0]!=A.shape[1]:
+    	raise ValueError("Non-squared matrix")
+
+    if numpy.any(A<0):
+    	raise ValueError("The matrix contains some negative values")
+
+    if numpy.all(A==0):
+    	raise ValueError("The matrix is null")
+
 
