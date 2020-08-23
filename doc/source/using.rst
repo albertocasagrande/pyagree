@@ -111,21 +111,23 @@ raised.
 
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-      File "/usr/lib/python3.8/site-packages/pyagree/standard.py", line 74, in CohenKappa
-        raise ValueError("This method exclusively supports nxn-matrices")
-    ValueError: This method exclusively supports nxn-matrices
+      File "/usr/lib/python3.8/site-packages/pyagree/standard.py", line 81, in CohenKappa
+        test_agreement_matrix(A)
+      File "/usr/lib/python3.8/site-packages/pyagree/common.py", line 29, in test_agreement_matrix
+        raise ValueError("Non-squared matrix")
+    ValueError: Non-squared matrix
 
     >>> CohenKappa(B)
 	
-    -0.0638297872340426
+    -0.0666666666666667
 	
     >>> YuleY(B)
 	
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-      File "/usr/lib/python3.8/site-packages/pyagree/standard.py", line 131, in YuleY
-        raise ValueError("This method exclusively supports 2x2-matrices")
-    ValueError: This method exclusively supports 2x2-matrices
+      File "/usr/lib/python3.8/site-packages/pyagree/standard.py", line 149, in YuleY
+        raise ValueError("The agreement matrix must be a 2x2-matrix")
+    ValueError: The agreement matrix must be a 2x2-matrix
 
     >>> YuleY(C)
 	
