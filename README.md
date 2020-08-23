@@ -43,7 +43,7 @@ For instance, the Python program:
 from pyagree import YuleY, CohenKappa
 	
 A = [[10,  1],
-	 [ 5, 10]]
+     [ 5, 10]]
 	
 Y = YuleY(A)
 K = CohenKappa(A)
