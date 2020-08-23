@@ -1,2 +1,4 @@
 doc/build
 pyagree/__pycache__
+build
+pyagree.egg-info
