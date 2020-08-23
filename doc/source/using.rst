@@ -75,7 +75,7 @@ representation of matrices and `NumPy <https://numpy.org/>`_ matrices.
 
     >>> ScottPi(A)
 
-	-0.09090909090909094
+    -0.09090909090909094
 
     >>> ScottPi(B)
 
