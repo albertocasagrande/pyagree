@@ -8,10 +8,11 @@ with open('README.md') as f:
 
 setup(name='pyagree',
       version=__version__,
-      description='A simple Python module to compute some inter-rater agreement measures.',
+      description=('A simple Python package to compute some inter-rater ' +
+                   'agreement measures.'),
       long_description=long_desc,
-      long_description_content_type='text/markdown', 
-      keywords = "inter-rater agreement measures",
+      long_description_content_type='text/markdown',
+      keywords='inter-rater agreement measures',
       author='Alberto Casagrande',
       author_email='acasagrande@units.it',
       license='MIT License',
@@ -35,4 +36,4 @@ setup(name='pyagree',
         "License :: OSI Approved :: MIT License",
       ],
       python_requires='>=3.6',
-     )
+      )

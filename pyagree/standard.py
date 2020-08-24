@@ -1,200 +1,207 @@
-from .common import test_agreement_matrix, colSum_iter, rowSum_iter, item_iter
-from numpy import multiply, matrix
-from numpy import any as np_any
+"""This file contains the implementation of the standard agreement measures.
+
+.. moduleauthor:: Alberto Casagrande <acasagrande@units.it>
+
+"""
+
 from math import sqrt
 
+from numpy import multiply, matrix
+from numpy import any as np_any
 
-def BennettS(A):
-    r"""Evaluate Bennett, Alpert and Goldstein's :math:`S` 
+from .common import test_agreement_matrix
 
-    Compute the :ref:`BennettS_theory` of an agreement matrix A.
 
-    :param A: An :math:`n \times n`-agreement matrix 
-    :type A: :class:`numpy.ndarray`
-    
-    :returns: The Bennett, Alpert and Goldstein's :math:`S` of A
+def bennett_s(agreement_matrix):
+    r"""Evaluate Bennett, Alpert and Goldstein's :math:`S`
+
+    Compute the :ref:`BennettS_theory` of agreement_matrix.
+
+    :param agreement_matrix: An :math:`n \times n`-agreement matrix
+    :type agreement_matrix: :class:`numpy.ndarray`
+    :returns: The Bennett, Alpert and Goldstein's :math:`S` of agreement_matrix
     :rtype: :class:`float`
     :raises: :class:`ValueError`
     """
-    
-    if isinstance(A,list):
-    	A = matrix(A)
 
-    test_agreement_matrix(A)
-	
-    if A.shape[0]<2:
+    if isinstance(agreement_matrix, list):
+        agreement_matrix = matrix(agreement_matrix)
+
+    test_agreement_matrix(agreement_matrix)
+
+    if agreement_matrix.shape[0] < 2:
         raise ValueError("The matrix has less than 2 rows and columns")
 
-    k = A.shape[0]
+    k = agreement_matrix.shape[0]
 
-    Pa = sum(A[i,i] for i in range(k))/A.sum()
+    p_a = sum(agreement_matrix[i, i] for i in range(k))/agreement_matrix.sum()
 
-    return (k*Pa-1)/(k-1) 
+    return (k*p_a-1)/(k-1)
 
 
-def BangdiwalaB(A):
-    r"""Evaluate Bangdiwala's :math:`B` 
+def bangdiwala_b(agreement_matrix):
+    r"""Evaluate Bangdiwala's :math:`B`
 
-    Compute the :ref:`BangdiwalaB_theory` of an agreement matrix A.
+    Compute the :ref:`BangdiwalaB_theory` of agreement_matrix.
 
-    :param A: An :math:`n \times n`-agreement matrix 
-    :type A: :class:`numpy.ndarray`
-    
-    :returns: The Bangdiwala's :math:`B` of A
+    :param agreement_matrix: An :math:`n \times n`-agreement matrix
+    :type agreement_matrix: :class:`numpy.ndarray`
+    :returns: The Bangdiwala's :math:`B` of agreement_matrix
     :rtype: :class:`float`
     :raises: :class:`ValueError`
     """
 
-    if isinstance(A,list):
-    	A = matrix(A)
+    if isinstance(agreement_matrix, list):
+        agreement_matrix = matrix(agreement_matrix)
 
-    test_agreement_matrix(A)
+    test_agreement_matrix(agreement_matrix)
 
-    k = A.shape[0]
-  
-    Pa = sum(A[i,i]**2 for i in range(k))
-    
-    Pe = sum(A[i,:].sum()*A[:,i].sum() for i in range(k))
+    k = agreement_matrix.shape[0]
 
-    if Pe==0:
+    p_a = sum(agreement_matrix[i, i]**2 for i in range(k))
+
+    p_e = sum(agreement_matrix[i, :].sum()*agreement_matrix[:, i].sum()
+              for i in range(k))
+
+    if p_e == 0:
         raise ValueError("This matrix is out of the domain of Bangdiwala's B")
 
-    return Pa/Pe
+    return p_a/p_e
 
 
-def CohenKappa(A):
-    r"""Evaluate Cohen's :math:`\kappa` 
+def cohen_kappa(agreement_matrix):
+    r"""Evaluate Cohen's :math:`\kappa`
 
-    Compute :ref:`CohenKappa_theory` of an agreement matrix A.
+    Compute :ref:`CohenKappa_theory` of agreement_matrix.
 
-    :param A: An :math:`n \times n`-agreement matrix 
-    :type A: :class:`numpy.ndarray`
-    
-    :returns: The Cohen's :math:`\kappa` of A
+    :param agreement_matrix: An :math:`n \times n`-agreement matrix
+    :type agreement_matrix: :class:`numpy.ndarray`
+    :returns: The Cohen's :math:`\kappa` of agreement_matrix
     :rtype: :class:`float`
     :raises: :class:`ValueError`
     """
 
-    if isinstance(A,list):
-    	A = matrix(A)
+    if isinstance(agreement_matrix, list):
+        agreement_matrix = matrix(agreement_matrix)
 
-    test_agreement_matrix(A)
+    test_agreement_matrix(agreement_matrix)
 
-    k = A.shape[0]
+    k = agreement_matrix.shape[0]
 
-    S_A = A.sum()
+    sum_am = agreement_matrix.sum()
 
-    Pa = sum(A[i,i] for i in range(k))/S_A
-    
-    Pe = sum(A[i,:].sum()*A[:,i].sum() for i in range(k))/(S_A**2)
+    p_a = sum(agreement_matrix[i, i] for i in range(k))/sum_am
 
-    if Pe==1:
-    	raise ValueError("The agreement probability by chance of the " +
+    p_e = sum(agreement_matrix[i, :].sum()*agreement_matrix[:, i].sum()
+              for i in range(k))/(sum_am**2)
+
+    if p_e == 1:
+        raise ValueError("The agreement probability by chance of the " +
                          "matrix is 1")
 
-    return (Pa-Pe)/(1-Pe)
+    return (p_a-p_e)/(1-p_e)
 
 
-def ScottPi(A):
-    r"""Evaluate Scott's :math:`\pi` 
+def scott_pi(agreement_matrix):
+    r"""Evaluate Scott's :math:`\pi`
 
-    Compute the :ref:`ScottPi_theory` of an agreement matrix A.
+    Compute the :ref:`ScottPi_theory` of agreement_matrix.
 
-    :param A: An :math:`n \times n`-agreement matrix 
-    :type A: :class:`numpy.ndarray`
-    
-    :returns: The Scott's :math:`\pi` of A
+    :param agreement_matrix: An :math:`n \times n`-agreement matrix
+    :type agreement_matrix: :class:`numpy.ndarray`
+
+    :returns: The Scott's :math:`\pi` of agreement_matrix
     :rtype: :class:`float`
     :raises: :class:`ValueError`
     """
-    
-    if isinstance(A,list):
-    	A = matrix(A)
-    	
-    test_agreement_matrix(A)
 
-    S_A2 = 2*A.sum()
-    
-    Pe = sum(((A[i,:].sum()+A[:,i].sum())/S_A2)**2
-             for i in range(A.shape[0]))
-    Pa = 2*sum(A[i,i] for i in range(A.shape[0]))/S_A2
+    if isinstance(agreement_matrix, list):
+        agreement_matrix = matrix(agreement_matrix)
 
-    if Pe==1:
-    	raise ValueError("The sum of the squared joint proportions of " +
+    test_agreement_matrix(agreement_matrix)
+
+    sum_am2 = 2*agreement_matrix.sum()
+    p_e = sum(((agreement_matrix[i, :].sum()+
+                agreement_matrix[:, i].sum())/sum_am2)**2
+              for i in range(agreement_matrix.shape[0]))
+    p_a = 2*sum(agreement_matrix[i, i]
+                for i in range(agreement_matrix.shape[0]))/sum_am2
+
+    if p_e == 1:
+        raise ValueError("The sum of the squared joint proportions of " +
                          "the matrix is 1")
-		                 
-    return (Pa-Pe)/(1-Pe)
+
+    return (p_a-p_e)/(1-p_e)
 
 
-def YuleY(A):
-    r"""Evaluate Yule's :math:`Y` 
+def yule_y(agreement_matrix):
+    r"""Evaluate Yule's :math:`Y`
 
-    Compute the :ref:`YuleY_theory` of a :math:`2 \times 2`-agreement 
-    matrix A.
+    Compute the :ref:`YuleY_theory` of a :math:`2 \times 2`-agreement
+    matrix agreement_matrix.
 
-    :param A: A :math:`2 \times 2`-agreement matrix 
-    :type A: :class:`numpy.ndarray`
-    
-    :returns: The Yule :math:`Y` of A
+    :param agreement_matrix: A :math:`2 \times 2`-agreement matrix
+    :type agreement_matrix: :class:`numpy.ndarray`
+
+    :returns: The Yule :math:`Y` of agreement_matrix
     :rtype: :class:`float`
     :raises: :class:`ValueError`
     """
-    
-    if isinstance(A,list):
-    	A = matrix(A)
-    	
-    test_agreement_matrix(A)
 
-    if A.shape[0]!=2:
+    if isinstance(agreement_matrix, list):
+        agreement_matrix = matrix(agreement_matrix)
+
+    test_agreement_matrix(agreement_matrix)
+
+    if agreement_matrix.shape[0] != 2:
         raise ValueError("The agreement matrix must be a 2x2-matrix")
 
     odd_r = 1
-    for i in range(A.shape[0]):
-        for j in range(A.shape[1]):
-            if i==j:
-                odd_r *= A[i,j]
+    for i in range(agreement_matrix.shape[0]):
+        for j in range(agreement_matrix.shape[1]):
+            if i == j:
+                odd_r *= agreement_matrix[i, j]
             else:
-                if A[i,j]==0:
+                if agreement_matrix[i, j] == 0:
                     raise ValueError("Some elements outside the main " +
                                      "diagonal are 0")
-                odd_r /= A[i,j]
+                odd_r /= agreement_matrix[i, j]
 
     sqrt_odd_r = sqrt(odd_r)
-    
+
     return (sqrt_odd_r-1)/(sqrt_odd_r+1)
-    
 
-def FleissKappa(C):
-    r"""Evaluate Fleiss's :math:`\kappa` 
 
-    Compute the :ref:`FleissKappa_theory` of 
-    a classification matrix C.
+def fleiss_kappa(classification_matrix):
+    r"""Evaluate Fleiss's :math:`\kappa`
 
-    :param C: An :math:`N \times k`-classification matrix
-    :type C: class:`numpy.ndarray`
-    
-    :returns: The Fleiss's :math:`\kappa` of C
+    Compute the :ref:`FleissKappa_theory` of a classification
+    matrix classification_matrix.
+
+    :param classification_matrix: An :math:`N \times k`-classification matrix
+    :type classification_matrix: class:`numpy.ndarray`
+
+    :returns: The Fleiss's :math:`\kappa` of classification_matrix
     :rtype: :class:`float`
     :raises: :class:`ValueError`
     """
-    
-    if isinstance(C,list):
-    	C = matrix(C)
 
-    if np_any(C<0):
-    	raise ValueError("The matrix contains some negative values")
+    if isinstance(classification_matrix, list):
+        classification_matrix = matrix(classification_matrix)
 
-    N = C.shape[0]
-    k = C.shape[1]
-    n = C[0,:].sum()
+    if np_any(classification_matrix < 0):
+        raise ValueError("The matrix contains some negative values")
 
-    Nn = N*n
-    
-    P0 = (multiply(C,C).sum()-Nn)/(Nn*(n-1))
+    dataset_size = classification_matrix.shape[0]
+    num_of_classes = classification_matrix.shape[1]
+    num_of_raters = classification_matrix[0, :].sum()
 
-    p = [C[:,j].sum()/Nn for j in range(k)]
+    d_n = dataset_size*num_of_raters
 
-    Pe = sum(p[j]**2 for j in range(k))
+    p_0 = (multiply(classification_matrix,
+                    classification_matrix).sum()-d_n)/(d_n*(num_of_raters-1))
 
-    return (P0-Pe)/(1-Pe)
+    p_e = sum((classification_matrix[:, j].sum()/d_n)**2
+              for j in range(num_of_classes))
 
+    return (p_0-p_e)/(1-p_e)

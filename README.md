@@ -1,5 +1,5 @@
 # pyagree
-A simple Python module to compute some inter-rater agreement measures. Among the other measures this package provides an implementation for both the _Information Agreement_ and the _extension-by-continuity of Information Agreement_ coefficients (see [[1]](#information_agreement)).
+A simple Python package to compute some inter-rater agreement measures. Among the other measures this package provides an implementation for both the _Information Agreement_ and the _extension-by-continuity of Information Agreement_ coefficients (see [[1]](#information_agreement)).
 
 
 
@@ -40,16 +40,16 @@ from pyagree import <function name>
 For instance, the Python program:
 
 ```python
-from pyagree import YuleY, CohenKappa
+from pyagree import yule_y, cohen_kappa
 	
 A = [[10,  1],
      [ 5, 10]]
 	
-Y = YuleY(A)
-K = CohenKappa(A)
+Y = yule_y(A)
+K = cohen_kappa(A)
 	
-print('Yule = {}'.format(Y))
-print('Kappa = {}'.format(K))
+print("Yule's Y = {}".format(Y))
+print("Cohen's Kappa = {}".format(K))
 ```
 
 evaluates both Yule's Y and Cohen's kappa of  the agreement matrix A and print them in output.
@@ -58,12 +58,8 @@ evaluates both Yule's Y and Cohen's kappa of  the agreement matrix A and print t
 
 ## References 
 
-<a id="information_agreement">[1]</a> 
-Casagrande, A. and Fabris, F. and 
-Girometti R. (2020). 
-Beyond Kappa: An Informational Index for
-Diagnostic Agreement in Dichotomous and
-Multivalue Ordered-Categorical Ratings, _Submitted for the publication_.
+<a id="information_agreement">[1]</a>  Casagrande, A. and Fabris, F. and Girometti R. (2020).  Beyond Kappa: An Informational Index for
+Diagnostic Agreement in Dichotomous and Multivalue Ordered-Categorical Ratings, _Submitted for the publication_.
 
 
 

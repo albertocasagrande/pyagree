@@ -1,90 +1,102 @@
+"""This file contains the implementation of some information theoretic functions.
+
+.. moduleauthor:: Alberto Casagrande <acasagrande@units.it>
+
+"""
+
 from math import log
 
-from .common import colSum_iter, rowSum_iter, item_iter
+from .common import col_sums_iter, row_sums_iter
 
 
-def pX(A):
-    r"""Evaluate the probability distribution of the columns of an agreement matrix
+def p_x(matrix):
+    r"""Evaluate the probability distribution of the columns of a matrix
 
-    Iterate over the probabilities of the columns of an agreement matrix , i.e., the 
+    Iterate over the probabilities of the columns of a matrix, i.e., the
     sequence :math:`(pX_0, \ldots, pX_n)` where:
-    
-    .. math::
-    
-       pX_{k} \stackrel{\tiny\text{def}}{=} \frac{\sum_{i} A[i][k]}{\sum_{i} \sum_{j} A[i][j]}
 
-    :param A: An agreement matrix 
-    :type A:  numpy.ndarray	
-    :returns: An iterator over the probabilities of the columns of A
+    .. math::
+
+       pX_{k} \stackrel{\tiny\text{def}}{=} \frac{\sum_{i} A[i][k]}{
+           \sum_{i} \sum_{j} A[i][j]}
+
+    :param matrix: A matrix
+    :type matrix: :class:`numpy.ndarray`
+    :returns: An iterator over the probabilities of the columns of matrix
     :rtype: Iterator[:class:`float`]
     """
 
-    SA = A.sum()
-    
-    for s_col in colSum_iter(A):
-        yield s_col/SA
+    sum_m = matrix.sum()
+
+    for s_col in col_sums_iter(matrix):
+        yield s_col/sum_m
 
 
-def pY(A):
-    r"""Evaluate the probability distribution of the rows of an agreement matrix
+def p_y(matrix):
+    r"""Evaluate the probability distribution of the rows of a matrix
 
-    Iterate over the probabilities of the rows of an agreement matrix , i.e., the 
+    Iterate over the probabilities of the rows of a matrix, i.e., the
     sequence :math:`(pY_0, \ldots, pY_n)` where:
-    
-    .. math::
-    
-       pY_{k} \stackrel{\tiny\text{def}}{=} \frac{\sum_{j} A[k][j]}{\sum_{i} \sum_{j} A[i][j]}
 
-    :param A: An agreement matrix 
-    :type A:  numpy.ndarray	
-    :returns: An iterator over the probabilities of the rows of A
+    .. math::
+
+       pY_{k} \stackrel{\tiny\text{def}}{=} \frac{\sum_{j} A[k][j]}{
+           \sum_{i} \sum_{j} A[i][j]}
+
+    :param matrix: A matrix
+    :type matrix: :class:`numpy.ndarray`
+    :returns: An iterator over the probabilities of the rows of matrix
     :rtype: Iterator[:class:`float`]
     """
 
-    SA = A.sum()
-    
-    for s_row in rowSum_iter(A):
-        yield s_row/SA
+    sum_m = matrix.sum()
+
+    for s_row in row_sums_iter(matrix):
+        yield s_row/sum_m
 
 
-def pXY(A):
-    r"""Evaluate the probability distribution of the elements of an agreement matrix
+def p_xy(matrix):
+    r"""Evaluate the probability distribution of the elements of a matrix
 
-    Iterate over the probabilities of the elements of an agreement matrix , i.e., the 
-    sequence :math:`(pXY_{0,0}, \ldots, pXY_{0,n}, pXY_{1,0},\ldots, pXY_{1,n},\ldots, pXY_{n,n})` where:
-    
+    Iterate over the probabilities of the elements of a matrix, i.e., the
+    sequence
+    :math:`(pXY_{0,0},\ldots,pXY_{0,n},pXY_{1,0},\ldots,pXY_{1,n},\ldots,
+    pXY_{n,n})` where:
+
     .. math::
-    
-       pXY_{k,h} \stackrel{\tiny\text{def}}{=} \frac{A[k][h]}{\sum_{i} \sum_{j} A[i][j]}
 
-    :param A: An agreement matrix 
-    :type A:  numpy.ndarray	
-    :returns: An iterator over the probabilities of the elements of A
+       pXY_{k,h} \stackrel{\tiny\text{def}}{=} \frac{A[k][h]}{
+           \sum_{i} \sum_{j} A[i][j]}
+
+    :param matrix: A matrix
+    :type matrix: :class:`numpy.ndarray`
+    :returns: An iterator over the probabilities of the elements of matrix
     :rtype: Iterator[:class:`float`]
     """
 
-    SA = A.sum()
-    
-    for y in range(A.shape[0]):
-        for x in range(A.shape[1]):
-            yield (A[y,x]/SA)
+    sum_m = matrix.sum()
+
+    for row in matrix:
+        for elem in row:
+            yield elem/sum_m
 
 
-def entropy(I):
+def entropy(values):
     r"""Evaluate the entropy of an iterable
 
-    Compute the `entropy <https://en.wikipedia.org/wiki/Entropy_(information_theory)>`_  
-    of an iterable I of floating point numbers, i.e., 
-    
-    .. math::
-    
-       H(\text{I}) \stackrel{\tiny\text{def}}{=} -\sum_{v \in \text{I}} v*\log_2{v}
+    Compute the
+    `entropy <https://en.wikipedia.org/wiki/Entropy_(information_theory)>`_
+    of an iterable I of floating point numbers, i.e.,
 
-    :param I: An iterable object of floating point numbers
-    :type I:  Iterable object of :class:`float`
-    :returns: Compute the entropy of I
+    .. math::
+
+       H(\text{I}) \stackrel{\tiny\text{def}}{=}
+       -\sum_{v \in \text{I}} v*\log_2{v}
+
+    :param values: An iterable object of floating point numbers
+    :type values:  Iterable object of :class:`float`
+    :returns: Compute the entropy of values
     :rtype: :class:`float`
     """
 
-    return -sum(v*log(v,2) for v in I)
-
+    return -sum(value*log(value, 2) for value in values)

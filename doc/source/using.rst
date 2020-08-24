@@ -29,16 +29,16 @@ Working Examples
 
 For instance::
 
-    >>> from pyagree import BangdiwalaB, CohenKappa
+    >>> from pyagree import bangdiwala_b, cohen_kappa
 
     >>> A = [[10,  1],
     ...      [ 5, 10]]
 
-    >>> BangdiwalaB(A)
+    >>> bangdiwala_b(A)
 
     0.6060606060606061
 
-    >>> CohenKappa(A)
+    >>> cohen_kappa(A)
 
     0.5491329479768786
 
@@ -65,7 +65,7 @@ representation of matrices and `NumPy <https://numpy.org/>`_ matrices.
 .. code:: python
 
     >>> import numpy
-    >>> from pyagree import ScottPi
+    >>> from pyagree import scott_pi
 
     >>> A = [[0,1,2],
     ...      [3,4,5],
@@ -73,11 +73,11 @@ representation of matrices and `NumPy <https://numpy.org/>`_ matrices.
 
     >>> B = numpy.matrix(A)
 
-    >>> ScottPi(A)
+    >>> scott_pi(A)
 
     -0.09090909090909094
 
-    >>> ScottPi(B)
+    >>> scott_pi(B)
 
     -0.09090909090909094
 
@@ -94,7 +94,7 @@ raised.
 
 .. code:: python
 
-    >>> from pyagree import CohenKappa, YuleY
+    >>> from pyagree import cohen_kappa, yule_y
     
     >>> A = [[0,1],
     ...      [2,3],
@@ -107,29 +107,29 @@ raised.
     >>> C = [[0,1],
     ...      [2,3]]
     
-    >>> CohenKappa(A)
+    >>> cohen_kappa(A)
 
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-      File "/usr/lib/python3.8/site-packages/pyagree/standard.py", line 81, in CohenKappa
+      File "/usr/lib/python3.8/site-packages/pyagree/standard.py", line 81, in cohen_kappa
         test_agreement_matrix(A)
       File "/usr/lib/python3.8/site-packages/pyagree/common.py", line 29, in test_agreement_matrix
         raise ValueError("Non-squared matrix")
     ValueError: Non-squared matrix
 
-    >>> CohenKappa(B)
+    >>> cohen_kappa(B)
 	
     -0.0666666666666667
 	
-    >>> YuleY(B)
+    >>> yule_y(B)
 	
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-      File "/usr/lib/python3.8/site-packages/pyagree/standard.py", line 149, in YuleY
+      File "/usr/lib/python3.8/site-packages/pyagree/standard.py", line 149, in yule_y
         raise ValueError("The agreement matrix must be a 2x2-matrix")
     ValueError: The agreement matrix must be a 2x2-matrix
 
-    >>> YuleY(C)
+    >>> yule_y(C)
 	
     -1.0
 

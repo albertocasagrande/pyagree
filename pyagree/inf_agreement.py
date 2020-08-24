@@ -1,49 +1,68 @@
-from math import log
+"""This file contains the implementation of the extension-by-continuity of
+   Information Agreement.
 
-from .common import test_agreement_matrix, countNNRows, countNNCols
-from .IT import pX, pY, pXY, entropy
+.. moduleauthor:: Alberto Casagrande <acasagrande@units.it>
+
+"""
+
 from numpy import matrix
+
+from .common import test_agreement_matrix, count_nonnull_rows
+from .common import count_nonnull_cols
+from .inf_theory import p_x, p_y, p_xy, entropy
 
 
 def refine(values):
-    for v in values:
-        if v!=0:
-            yield v
+    r"""Remove 0 from a sequence of values
+
+    Give an interable set of values, this function yields all
+    the values in the sequence, but those that equal 0.
+
+    :param values: An interable set of values
+    :type values: An interable set of values
+    :returns: An iterator over values without the instances of 0
+    :rtype: Iterator
+    """
+
+    for value in values:
+        if value != 0:
+            yield value
 
 
-def IAeps(A):
-    r"""Evaluate *extension-by-continuity of Information Agreement* (:math:`\text{IA}_{\epsilon}`)
+def ia_eps(agreement_matrix):
+    r"""Evaluate *extension-by-continuity of Information Agreement*
 
-    Compute the :ref:`IAe_theory` (:math:`\text{IA}_{\epsilon}`) of 
-    an agreement matrix C.
+    Compute the :ref:`IAe_theory` (:math:`\text{IA}_{\epsilon}`) of
+    agreement_matrix.
 
-
-    :param A: An agreement matrix 
-    :type A: :class:`numpy.ndarray`	
-    :returns: The extension-by-continuity of Information Agreement of A
+    :param agreement_matrix: An agreement matrix
+    :type agreement_matrix: :class:`numpy.ndarray`
+    :returns: The extension-by-continuity of Information Agreement of
+              agreement_matrix
     :rtype: :class:`float`
     :raises: :class:`ValueError`
     """
-    if isinstance(A,list):
-    	A = matrix(A)
+    if isinstance(agreement_matrix, list):
+        agreement_matrix = matrix(agreement_matrix)
 
-    test_agreement_matrix(A)
-	
-    if A.shape[0]<2:
+    test_agreement_matrix(agreement_matrix)
+
+    if agreement_matrix.shape[0] < 2:
         raise ValueError("The matrix has less than 2 rows and columns")
 
-    H_Xf = entropy(refine(pX(A)))
-    H_Yf = entropy(refine(pY(A)))
- 
-    if H_Xf==0:
-        return (A.shape[0]-countNNRows(A))/A.shape[0]
- 		
-    if H_Yf==0:
-        return (A.shape[0]-countNNCols(A))/A.shape[0]
-    
-    H_XYf = entropy(refine(pXY(A)))
-    if H_Xf < H_Yf:
-        return 1+(H_Yf-H_XYf)/H_Xf
-    
-    return 1+(H_Xf-H_XYf)/H_Yf
+    h_xf = entropy(refine(p_x(agreement_matrix)))
+    h_yf = entropy(refine(p_y(agreement_matrix)))
 
+    if h_xf == 0:
+        return (agreement_matrix.shape[0]-
+                count_nonnull_rows(agreement_matrix))/agreement_matrix.shape[0]
+
+    if h_yf == 0:
+        return (agreement_matrix.shape[0]-
+                count_nonnull_cols(agreement_matrix))/agreement_matrix.shape[0]
+
+    h_xyf = entropy(refine(p_xy(agreement_matrix)))
+    if h_xf < h_yf:
+        return 1+(h_yf-h_xyf)/h_xf
+
+    return 1+(h_xf-h_xyf)/h_yf

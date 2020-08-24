@@ -1,4 +1,4 @@
-"""A simple Python module to compute some inter-rater agreement measures.
+"""A simple Python package to compute some inter-rater agreement measures.
 
 .. moduleauthor:: Alberto Casagrande <acasagrande@units.it>
 
@@ -15,7 +15,7 @@ __maintainer__ = "Alberto Casagrande"
 __email__ = "acasagrande@units.it"
 __status__ = "Development"
 
-from .IA import *
+from .inf_agreement import *
 from .standard import *
 
-name = "pyagree"
+NAME = "pyagree"

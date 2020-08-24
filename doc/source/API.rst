@@ -5,11 +5,11 @@
 
 .. currentmodule:: pyagree
 
-.. autofunction:: BennettS
-.. autofunction:: ScottPi
-.. autofunction:: YuleY 
-.. autofunction:: BangdiwalaB
-.. autofunction:: CohenKappa
-.. autofunction:: FleissKappa
-.. autofunction:: IAeps
+.. autofunction:: bennett_s
+.. autofunction:: scott_pi
+.. autofunction:: yule_y 
+.. autofunction:: bangdiwala_b
+.. autofunction:: cohen_kappa
+.. autofunction:: fleiss_kappa
+.. autofunction:: ia_eps
 
