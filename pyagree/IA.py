@@ -2,6 +2,7 @@ from math import log
 
 from .common import test_agreement_matrix, countNNRows, countNNCols
 from .IT import pX, pY, pXY, entropy
+from numpy import matrix
 
 
 def refine(values):
