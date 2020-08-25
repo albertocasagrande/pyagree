@@ -30,6 +30,7 @@ class TestFleissKappa(unittest.TestCase):
                               [6, 5, 2, 1, 0],
                               [0, 2, 2, 3, 7]]),
                        0.20993070442195522)]
+        self.errors = []
 
     def test_fleiss_kappa(self):
         """Measure evaluations
@@ -37,6 +38,13 @@ class TestFleissKappa(unittest.TestCase):
         for matrix, res in self.tests:
             self.assertAlmostEqual(fleiss_kappa(matrix),
                                    res, places=7)
+
+    def test_fleiss_kappa_domain(self):
+        """Test out-of-domain matrices
+        """
+        for matrix, err_type in self.errors:
+            with self.assertRaises(err_type):
+                fleiss_kappa(matrix)
 
 
 class TestYuleY(unittest.TestCase):
@@ -77,6 +85,18 @@ class TestYuleY(unittest.TestCase):
                        (array([[1, 2, 3],
                                [4, 5, 6],
                                [7, 8, 9]]),
+                        ValueError),
+                       (array([[1, 2],
+                               [4, 5],
+                               [7, 8]]),
+                        ValueError),
+                       (array([[1]]),
+                        ValueError),
+                       (array([[1, 2],
+                               [3,-4]]),
+                        ValueError),
+                       (array([[0,0],
+                               [0,0]]),
                         ValueError)
                        ]
 
@@ -134,6 +154,17 @@ class TestBangdiwalaB(unittest.TestCase):
                               [1, 46]]),
                        0.965614166588588),
                       ]
+        self.errors = [(array([[1, 2],
+                               [4, 5],
+                               [7, 8]]),
+                        ValueError),
+                       (array([[1, 2],
+                               [3,-4]]),
+                        ValueError),
+                       (array([[0,0],
+                               [0,0]]),
+                        ValueError)
+                       ]
 
     def test_bangdiwala_b(self):
         """Measure evaluations
@@ -141,6 +172,13 @@ class TestBangdiwalaB(unittest.TestCase):
         for matrix, res in self.tests:
             self.assertAlmostEqual(bangdiwala_b(matrix),
                                    res, places=7)
+
+    def test_bangdiwala_b_domain(self):
+        """Test out-of-domain matrices
+        """
+        for matrix, err_type in self.errors:
+            with self.assertRaises(err_type):
+                bangdiwala_b(matrix)
 
 
 class TestBennettS(unittest.TestCase):
@@ -182,6 +220,17 @@ class TestBennettS(unittest.TestCase):
                               [1, 46]]),
                        0.956989247311828),
                       ]
+        self.errors = [(array([[1, 2],
+                               [4, 5],
+                               [7, 8]]),
+                        ValueError),
+                       (array([[1, 2],
+                               [3,-4]]),
+                        ValueError),
+                       (array([[0,0],
+                               [0,0]]),
+                        ValueError)
+                       ]
 
     def test_bennett_s(self):
         """Measure evaluations
@@ -189,6 +238,13 @@ class TestBennettS(unittest.TestCase):
         for matrix, res in self.tests:
             self.assertAlmostEqual(bennett_s(matrix),
                                    res, places=7)
+
+    def test_bennett_s_domain(self):
+        """Test out-of-domain matrices
+        """
+        for matrix, err_type in self.errors:
+            with self.assertRaises(err_type):
+                bennett_s(matrix)
 
 
 class TestScottPi(unittest.TestCase):
@@ -230,6 +286,19 @@ class TestScottPi(unittest.TestCase):
                               [1, 46]]),
                        0.943840579710145),
                       ]
+        self.errors = [(array([[1, 2],
+                               [4, 5],
+                               [7, 8]]),
+                        ValueError),
+                       (array([[1]]),
+                        ValueError),
+                       (array([[1, 2],
+                               [3,-4]]),
+                        ValueError),
+                       (array([[0,0],
+                               [0,0]]),
+                        ValueError)
+                       ]
 
     def test_scott_pi(self):
         """Measure evaluations
@@ -237,6 +306,14 @@ class TestScottPi(unittest.TestCase):
         for matrix, res in self.tests:
             self.assertAlmostEqual(scott_pi(matrix),
                                    res, places=7)
+
+    def test_scott_pi_domain(self):
+        """Test out-of-domain matrices
+        """
+        for matrix, err_type in self.errors:
+            with self.assertRaises(err_type):
+                scott_pi(matrix)
+
 
 
 class TestCohenKappa(unittest.TestCase):
@@ -278,6 +355,21 @@ class TestCohenKappa(unittest.TestCase):
                               [1, 46]]),
                        0.9438490566037736),
                       ]
+        self.errors = [(array([[1, 2],
+                               [4, 5],
+                               [7, 8]]),
+                        ValueError),
+                       (array([[1]]),
+                        ValueError),
+                       (array([[1, 2],
+                               [3,-4]]),
+                        ValueError),
+                       (array([[1]]),
+                        ValueError),
+                       (array([[0,0],
+                               [0,0]]),
+                        ValueError)
+                       ]
 
     def test_cohen_kappa(self):
         """Measure evaluations
@@ -285,6 +377,14 @@ class TestCohenKappa(unittest.TestCase):
         for matrix, res in self.tests:
             self.assertAlmostEqual(cohen_kappa(matrix),
                                    res, places=7)
+
+    def test_cohen_kappa_domain(self):
+        """Test out-of-domain matrices
+        """
+        for matrix, err_type in self.errors:
+            with self.assertRaises(err_type):
+                cohen_kappa(matrix)
+
 
 
 class TestIAeps(unittest.TestCase):
@@ -326,6 +426,19 @@ class TestIAeps(unittest.TestCase):
                               [1, 46]]),
                        0.8363880077413772),
                       ]
+        self.errors = [(array([[1, 2],
+                               [4, 5],
+                               [7, 8]]),
+                        ValueError),
+                       (array([[1, 2],
+                               [3,-4]]),
+                        ValueError),
+                       (array([[1]]),
+                        ValueError),
+                       (array([[0,0],
+                               [0,0]]),
+                        ValueError)
+                       ]
 
     def test_ia_eps(self):
         """Measure evaluations
@@ -333,6 +446,13 @@ class TestIAeps(unittest.TestCase):
         for matrix, res in self.tests:
             self.assertAlmostEqual(ia_eps(matrix),
                                    res, places=7)
+
+    def test_ia_eps_domain(self):
+        """Test out-of-domain matrices
+        """
+        for matrix, err_type in self.errors:
+            with self.assertRaises(err_type):
+                ia_eps(matrix)
 
 
 if __name__ == '__main__':
