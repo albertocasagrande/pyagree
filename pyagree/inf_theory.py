@@ -1,4 +1,5 @@
-"""This file contains the implementation of some information theoretic functions.
+"""This file contains the implementation of some information-theoretic
+   functions.
 
 .. moduleauthor:: Alberto Casagrande <acasagrande@units.it>
 
@@ -76,9 +77,9 @@ def p_xy(matrix):
 
     sum_m = matrix.sum()
 
-    for row in matrix:
-        for elem in row:
-            yield elem/sum_m
+    for row_idx in range(matrix.shape[0]):
+        for col_idx in range(matrix.shape[1]):
+            yield matrix[row_idx, col_idx]/sum_m
 
 
 def entropy(values):

@@ -121,8 +121,8 @@ def scott_pi(agreement_matrix):
     test_agreement_matrix(agreement_matrix)
 
     sum_am2 = 2*agreement_matrix.sum()
-    p_e = sum(((agreement_matrix[i, :].sum()+
-                agreement_matrix[:, i].sum())/sum_am2)**2
+    p_e = sum(((agreement_matrix[i, :].sum() +
+                agreement_matrix[:, i].sum()) / sum_am2)**2
               for i in range(agreement_matrix.shape[0]))
     p_a = 2*sum(agreement_matrix[i, i]
                 for i in range(agreement_matrix.shape[0]))/sum_am2

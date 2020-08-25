@@ -93,10 +93,10 @@ class TestYuleY(unittest.TestCase):
                        (array([[1]]),
                         ValueError),
                        (array([[1, 2],
-                               [3,-4]]),
+                               [3, -4]]),
                         ValueError),
-                       (array([[0,0],
-                               [0,0]]),
+                       (array([[0, 0],
+                               [0, 0]]),
                         ValueError)
                        ]
 
@@ -159,10 +159,10 @@ class TestBangdiwalaB(unittest.TestCase):
                                [7, 8]]),
                         ValueError),
                        (array([[1, 2],
-                               [3,-4]]),
+                               [3, -4]]),
                         ValueError),
-                       (array([[0,0],
-                               [0,0]]),
+                       (array([[0, 0],
+                               [0, 0]]),
                         ValueError)
                        ]
 
@@ -225,10 +225,10 @@ class TestBennettS(unittest.TestCase):
                                [7, 8]]),
                         ValueError),
                        (array([[1, 2],
-                               [3,-4]]),
+                               [3, -4]]),
                         ValueError),
-                       (array([[0,0],
-                               [0,0]]),
+                       (array([[0, 0],
+                               [0, 0]]),
                         ValueError)
                        ]
 
@@ -293,10 +293,10 @@ class TestScottPi(unittest.TestCase):
                        (array([[1]]),
                         ValueError),
                        (array([[1, 2],
-                               [3,-4]]),
+                               [3, -4]]),
                         ValueError),
-                       (array([[0,0],
-                               [0,0]]),
+                       (array([[0, 0],
+                               [0, 0]]),
                         ValueError)
                        ]
 
@@ -313,7 +313,6 @@ class TestScottPi(unittest.TestCase):
         for matrix, err_type in self.errors:
             with self.assertRaises(err_type):
                 scott_pi(matrix)
-
 
 
 class TestCohenKappa(unittest.TestCase):
@@ -362,12 +361,12 @@ class TestCohenKappa(unittest.TestCase):
                        (array([[1]]),
                         ValueError),
                        (array([[1, 2],
-                               [3,-4]]),
+                               [3, -4]]),
                         ValueError),
                        (array([[1]]),
                         ValueError),
-                       (array([[0,0],
-                               [0,0]]),
+                       (array([[0, 0],
+                               [0, 0]]),
                         ValueError)
                        ]
 
@@ -384,7 +383,6 @@ class TestCohenKappa(unittest.TestCase):
         for matrix, err_type in self.errors:
             with self.assertRaises(err_type):
                 cohen_kappa(matrix)
-
 
 
 class TestIAeps(unittest.TestCase):
@@ -431,12 +429,12 @@ class TestIAeps(unittest.TestCase):
                                [7, 8]]),
                         ValueError),
                        (array([[1, 2],
-                               [3,-4]]),
+                               [3, -4]]),
                         ValueError),
                        (array([[1]]),
                         ValueError),
-                       (array([[0,0],
-                               [0,0]]),
+                       (array([[0, 0],
+                               [0, 0]]),
                         ValueError)
                        ]
 

@@ -54,11 +54,11 @@ def ia_eps(agreement_matrix):
     h_yf = entropy(refine(p_y(agreement_matrix)))
 
     if h_xf == 0:
-        return (agreement_matrix.shape[0]-
+        return (agreement_matrix.shape[0] -
                 count_nonnull_rows(agreement_matrix))/agreement_matrix.shape[0]
 
     if h_yf == 0:
-        return (agreement_matrix.shape[0]-
+        return (agreement_matrix.shape[0] -
                 count_nonnull_cols(agreement_matrix))/agreement_matrix.shape[0]
 
     h_xyf = entropy(refine(p_xy(agreement_matrix)))
