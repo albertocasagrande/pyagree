@@ -11,5 +11,5 @@
 .. autofunction:: bangdiwala_b
 .. autofunction:: cohen_kappa
 .. autofunction:: fleiss_kappa
-.. autofunction:: ia_eps
+.. autofunction:: ia_c
 

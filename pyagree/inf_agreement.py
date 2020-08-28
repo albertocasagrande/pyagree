@@ -29,10 +29,10 @@ def refine(values):
             yield value
 
 
-def ia_eps(agreement_matrix):
+def ia_c(agreement_matrix):
     r"""Evaluate *extension-by-continuity of Information Agreement*
 
-    Compute the :ref:`IAe_theory` (:math:`\text{IA}_{\epsilon}`) of
+    Compute the :ref:`IAc_theory` (:math:`\text{IA}_{C}`) of
     agreement_matrix.
 
     :param agreement_matrix: An agreement matrix

@@ -9,7 +9,7 @@ import unittest
 from numpy import array
 
 from pyagree import fleiss_kappa, yule_y, bangdiwala_b, bennett_s
-from pyagree import cohen_kappa, scott_pi, ia_eps
+from pyagree import cohen_kappa, scott_pi, ia_c
 
 
 class TestFleissKappa(unittest.TestCase):
@@ -438,19 +438,19 @@ class TestIAeps(unittest.TestCase):
                         ValueError)
                        ]
 
-    def test_ia_eps(self):
+    def test_ia_c(self):
         """Measure evaluations
         """
         for matrix, res in self.tests:
-            self.assertAlmostEqual(ia_eps(matrix),
+            self.assertAlmostEqual(ia_c(matrix),
                                    res, places=7)
 
-    def test_ia_eps_domain(self):
+    def test_ia_c_domain(self):
         """Test out-of-domain matrices
         """
         for matrix, err_type in self.errors:
             with self.assertRaises(err_type):
-                ia_eps(matrix)
+                ia_c(matrix)
 
 
 if __name__ == '__main__':

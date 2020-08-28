@@ -234,7 +234,7 @@ as :math:`\epsilon` tends to :math:`0` from the right, i.e.,
    { \min(H(X_{A}), H(Y_{A})) }.
 
 
-.. _IAe_theory:
+.. _IAc_theory:
 
 -----------------------------
 Extension-by-Continuity of IA
@@ -244,12 +244,12 @@ Extension-by-Continuity of IA
 and solves some of the pitfalls of Cohen's :math:`\kappa`. 
 However, it is not defined over all the agreement matrices and,  
 in particular, it cannot be directly computed on agreement 
-matrices containing some zeros (see :cite:`IAe2020`). 
+matrices containing some zeros (see :cite:`IAc2020`). 
 
 The *extension-by-continuity of Information Agreement*, 
-(:math:`\text{IA}_{\epsilon}`), extends :math:`\text{IA}`'s 
+(:math:`\text{IA}_{C}`), extends :math:`\text{IA}`'s 
 domain so that it can deal with matrices containing some zeros 
-(see :cite:`IAe2020`). In order to achieve this goal, 
+(see :cite:`IAc2020`). In order to achieve this goal, 
 the considered agreement matrix :math:`A` is replaced by 
 the symbolic matrix :math:`A_{\epsilon}` is defined as:
 
@@ -272,20 +272,20 @@ and :math:`H(Y_{A_{\epsilon}})` as :math:`\epsilon` tends
 to :math:`0` from the right, i.e., 
 
 .. math::
-   \text{IA}_{\epsilon}(A) \stackrel{\tiny\text{def}}{=}  
+   \text{IA}_{C}(A) \stackrel{\tiny\text{def}}{=}  
    \lim_{\epsilon \rightarrow 0^+} 
    \frac{I(X_{A_{\epsilon}},Y_{A_{\epsilon}})} 
    { \min(H(X_{A_{\epsilon}}), H(Y_{A_{\epsilon}})) }.
 
 
-:math:`\text{IA}_{\epsilon}(A)` was proven to be defined 
+:math:`\text{IA}_{C}(A)` was proven to be defined 
 over any non-null agreement matrix having more than one 
 row/column and, if :math:`l` and :math:`m` are numbers of 
 non-null columns and non-null rows in :math:`A`, 
 respectively, then:
 
 .. math::
-   \text{IA}_{\epsilon}(A) = \begin{cases}
+   \text{IA}_{C}(A) = \begin{cases}
    1-\frac{m}{k} & \text{if $H(\overline{X_{A}})=0$}\\
    1-\frac{l}{k} & \text{if $H(\overline{Y_{A}})=0$}\\
    \frac{I(\overline{X_{A}},\overline{Y_{A}})} 
@@ -298,7 +298,7 @@ and :math:`\overline{X_{A}Y_{A}}` are three random
 variables having the same probability distributions of 
 :math:`{X_{A}}`, :math:`{Y_{A}}`, and :math:`{X_{A}Y_{A}}` 
 except for :math:`0`-probability events which are removed 
-from their domains (see :cite:`IAe2020`).
+from their domains (see :cite:`IAc2020`).
 
 References
 ----------
